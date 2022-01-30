@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ConnectToApi.Orchestrator
 {
-    public class IHomeOrchestrator
+    interface ISearchController
     {
     }
 }

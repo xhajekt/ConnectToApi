@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "Result";
+    @model ConnectToApi.BL.Result.ResultOrchestrator
+}
+
+@if (Model.IsSuccess)
+{
+    <h1>Success register</h1>
+}
+else
+{
+    <h1>@Model.ErrorMessage</h1>
+}
+

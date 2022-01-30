@@ -1,0 +1,29 @@
+﻿@{ 
+    @model ConnectToApi.Models.RegisterViewModel
+    //@using System.Web.Helpers
+}
+
+<div class="text-center">
+    <h1 class="display-4">Register</h1>
+    <p>Enter data</p>
+
+    <form asp-action="Register" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="MemberName" class="control-label"></label>
+            <input asp-for="MemberName" class="form-control" />
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="WatchListName" class="control-label"></label>
+            <input asp-for="WatchListName" class="form-control" />
+            <span asp-validation-for="WatchListName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageFile" class="control-label"></label>
+            <input asp-for="ImageFile" accept="image/*" />
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
+
+        <input type="submit" value="Register" class="img-thumbnail btn-primary" />
+    </form>
+</div>
