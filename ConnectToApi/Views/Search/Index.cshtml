@@ -1,6 +1,39 @@
 ﻿@{
-    ViewData["Title"] = "Search in watchlist";
+    @model ConnectToApi.Models.SearchViewModel
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="text-center">
+    <h1 class="display-4">Search in watchlist</h1>
+    <p>Enter data</p>
+
+    <form asp-action="Search" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="WatchlistName" class="control-label"></label>
+            <input asp-for="WatchlistName" class="form-control" />
+            <span asp-validation-for="WatchlistName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Treshold" class="control-label"></label>
+            <input asp-for="Treshold" class="form-control" />
+            <span asp-validation-for="Treshold" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageFile" class="control-label"></label>
+            <input asp-for="ImageFile" accept="image/*" />
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="MinFaceSize" class="control-label"></label>
+            <input asp-for="MinFaceSize" class="form-control" accept="number" />
+            <span asp-validation-for="MinFaceSize" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="MaxFaceSize" class="control-label"></label>
+            <input asp-for="MaxFaceSize" class="form-control" />
+            <span asp-validation-for="MaxFaceSize" class="text-danger"></span>
+        </div>
+
+        <input type="submit" value="Search" class="img-thumbnail btn-primary" />
+    </form>
+</div>

@@ -33,18 +33,19 @@ namespace ConnectToApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterAsync([Bind("MemberName", "WatchListName", "ImageFile")] RegisterViewModel model)
+        public async Task<IActionResult> RegisterAsync(/*[Bind("MemberName", "WatchListName", "ImageFile")] */RegisterViewModel model)
         {
             if (string.IsNullOrEmpty(model.MemberName) || string.IsNullOrEmpty(model.WatchListName))
             {
                 return View("ResultSuccess", new ResultOrchestrator() { ErrorMessage = "wrong input from view" });
             }
 
-            string wwwRootPath = _webhostEnvironment.WebRootPath;
-            string filename = Path.GetFileNameWithoutExtension(model.ImageFile.FileName);
-            string extension = Path.GetExtension(model.ImageFile.FileName);
-            model.ImageName =  filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
-            string path = Path.Combine(wwwRootPath , filename);
+            //creating unique name and saving in local folder
+            //string wwwRootPath = _webhostEnvironment.WebRootPath;
+            //string filename = Path.GetFileNameWithoutExtension(model.ImageFile.FileName);
+            //string extension = Path.GetExtension(model.ImageFile.FileName);
+            //model.ImageName =  filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+            //string path = Path.Combine(wwwRootPath , filename);
             //using (var fileStream = new FileStream(path, FileMode.Create))
             //{
             //    await model.ImageFile.CopyToAsync(fileStream);
@@ -67,14 +68,7 @@ namespace ConnectToApi.Controllers
             ResultOrchestrator result =  await _registerOrchestrator.RegisterAsync(fileBytes, model.MemberName, model.WatchListName);
 
             return View("ResultSuccess", result);
-            //return View("Index");
         }
-
-        //[HttpGet]
-        //public IActionResult ResultSuccess()
-        //{
-        //    return View();
-        //}
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

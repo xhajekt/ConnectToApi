@@ -16,7 +16,7 @@ namespace ConnectToApi.Models
         [DisplayName("Watchlist name")]
         public string WatchListName { get; set; }
 
-        public string ImageName { get; set; }
+        //public string ImageName { get; set; }
 
 
         [DisplayName("Image")]

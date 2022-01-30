@@ -1,6 +1,5 @@
 ﻿@{ 
     @model ConnectToApi.Models.RegisterViewModel
-    //@using System.Web.Helpers
 }
 
 <div class="text-center">
@@ -11,7 +10,7 @@
         <div class="form-group">
             <label asp-for="MemberName" class="control-label"></label>
             <input asp-for="MemberName" class="form-control" />
-            <span asp-validation-for="ImageFile" class="text-danger"></span>
+            <span asp-validation-for="MemberName" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="WatchListName" class="control-label"></label>
