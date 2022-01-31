@@ -1,4 +1,5 @@
-﻿using ConnectToApi.BL.Result;
+﻿using ConnectToApi.BL.API;
+using ConnectToApi.BL.Result;
 using ConnectToApi.Models;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,20 @@ namespace ConnectToApi.Orchestrator
     {
         public async Task<ResultSpecificOrchestrator<SearchResultViewModel>> SearchByParamsAsync(byte[] fileBytes, string watchlistName, int treshold, int maxFaceSize, int minFaceSize)
         {
-            await Task.Delay(1);
             ResultSpecificOrchestrator<SearchResultViewModel> result = new ResultSpecificOrchestrator<SearchResultViewModel>();
+
+            string encodedImage = System.Text.Encoding.UTF8.GetString(fileBytes, 0, fileBytes.Length);
+            var searchImageRequest = new FacesSearchRequest(encodedImage, treshold, maxFaceSize, minFaceSize);
+            var facesSearchResponse = await searchImageRequest.ExecuteAsync();
+
+            if (!facesSearchResponse.IsSuccess)
+            {
+                result.ErrorMessage = "face wasnt found in images search";
+                return result;
+            }
+
+            //continue search in watchlistMember by FaceId and watchlistName  - no idea witch method
+
             result.ErrorMessage = "method is not implemented";
             return result;
         }
